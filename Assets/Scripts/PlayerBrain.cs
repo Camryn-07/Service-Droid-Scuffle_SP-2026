@@ -8,6 +8,9 @@ public class PlayerBrain : MonoBehaviour
     [SerializeField] private float playerSpeed;
     private Rigidbody rb;
     private InputAction interact;
+    private Vector3 inWindTunnel;
+
+    public Vector3 InWindTunnel { get => inWindTunnel; set => inWindTunnel = value; }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -38,8 +41,16 @@ public class PlayerBrain : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        rb.linearVelocity = new Vector3(playerMovement.x, rb.linearVelocity.y, playerMovement.z);
+        if (inWindTunnel == Vector3.zero)
+        {
+            rb.linearVelocity = new Vector3(playerMovement.x, rb.linearVelocity.y, playerMovement.z);
+        }
+        else
+        {
+            rb.linearVelocity = new Vector3(playerMovement.x + inWindTunnel.x,
+                rb.linearVelocity.y + inWindTunnel.y, rb.linearVelocity.z + inWindTunnel.z);
+        }
     }
 }
