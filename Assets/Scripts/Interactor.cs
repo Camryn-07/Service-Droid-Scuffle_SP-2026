@@ -11,7 +11,6 @@ public class Interactor : MonoBehaviour
         activate = InputSystem.actions.FindAction("Interact");
         activate.started += ActivatePerformed;
         canPush = false;
-        Debug.Log(activate);
     }
 
     private void ActivatePerformed(InputAction.CallbackContext obj)
@@ -28,12 +27,20 @@ public class Interactor : MonoBehaviour
         {
             canPush = true;
             activeItem = other.gameObject.GetComponent<Activator>();
+            //activeItem.PressPrompt.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        canPush = false;
-        activeItem = null;
+        if (other.gameObject.CompareTag("Button"))
+        {
+            canPush = false;
+            if (activeItem != null)
+            {
+                activeItem.PressPrompt.SetActive(false);
+            }
+            activeItem = null;
+        }
     }
 
     private void OnDestroy()

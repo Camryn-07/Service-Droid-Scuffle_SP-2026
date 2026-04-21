@@ -7,6 +7,9 @@ TagManager:
   - Button
   - Crate
   - Hazard
+  - MagnetUpgrade
+  - Monorail
+  - MonorailUpgrade
   layers:
   - Default
   - TransparentFX
@@ -15,7 +18,7 @@ TagManager:
   - Water
   - UI
   - Magnetic
-  - 
+  - Monorail
   - 
   - 
   - 

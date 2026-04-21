@@ -12,7 +12,7 @@ public class WindTunnel : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerBrain>().InWindTunnel = pushDirection;
+            other.gameObject.GetComponent<PlayerMovement>().InWindTunnel = pushDirection;
         }
     }
 
@@ -20,7 +20,7 @@ public class WindTunnel : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            other.gameObject.GetComponent<PlayerBrain>().InWindTunnel = Vector3.zero;
+            other.gameObject.GetComponent<PlayerMovement>().InWindTunnel = Vector3.zero;
         }
     }
 }
