@@ -27,7 +27,7 @@ public class Interactor : MonoBehaviour
         {
             canPush = true;
             activeItem = other.gameObject.GetComponent<Activator>();
-            //activeItem.PressPrompt.SetActive(true);
+            activeItem.PressPrompt.SetActive(true);
         }
     }
     private void OnTriggerExit(Collider other)

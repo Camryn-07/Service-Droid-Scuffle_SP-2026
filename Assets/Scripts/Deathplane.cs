@@ -2,11 +2,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerHurt : MonoBehaviour
+public class Deathplane : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float deathPlane;
-    [SerializeField] private Transform respawn;
+    [SerializeField] private Vector3 respawn;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -21,7 +21,7 @@ public class PlayerHurt : MonoBehaviour
     {
         if (transform.position.y <= deathPlane)
         {
-            transform.position = new Vector3(respawn.position.x, respawn.position.y, respawn.position.z);
+            transform.position = respawn;
         }
     }
 }

@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 inWindTunnel;
 
     public Vector3 InWindTunnel { get => inWindTunnel; set => inWindTunnel = value; }
+    public float RotationSpeed { get => rotationSpeed; set => rotationSpeed = value; }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

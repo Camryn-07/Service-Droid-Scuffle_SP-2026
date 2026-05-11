@@ -14,7 +14,9 @@ public class RailLine : MonoBehaviour
         {
             player = transform.GetChild(0).gameObject;
             playerRB = player.GetComponent<Rigidbody>();
+            playerRB.linearVelocity = Vector3.zero;
             playerRB.constraints = RigidbodyConstraints.FreezePositionY;
+            playerRB.freezeRotation = true;
             PM = playerRB.GetComponent<PlayerMovement>();
             PM.enabled = false;
             

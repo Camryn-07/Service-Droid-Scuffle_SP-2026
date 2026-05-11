@@ -12,9 +12,12 @@ public class MagnetPull : MonoBehaviour
     [SerializeField] private TMP_Text controlsText;
     [SerializeField] private GameObject magnetBeam;
     private Rigidbody pulledObject;
+    [SerializeField] private PlayerMovement PM;
+    private bool activated = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        activated = true;
         pull = InputSystem.actions.FindAction("Magnet");
         pull.performed += PullPerformed;
         pull.canceled += PullCanceled;
@@ -25,12 +28,14 @@ public class MagnetPull : MonoBehaviour
     {
         magnetBeam.SetActive(true);
         pulling = true;
+        PM.RotationSpeed = 0.1f;
     }
 
     private void PullCanceled(InputAction.CallbackContext obj)
     {
         magnetBeam.SetActive(false);
         pulling = false;
+        PM.RotationSpeed = 0.25f;
     }
 
     // Update is called once per frame
@@ -38,7 +43,8 @@ public class MagnetPull : MonoBehaviour
     {
         if (pulling)
         {
-            if (pulledObject == null && Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, checkDistance, magnetLayer))
+            if (pulledObject == null && Physics.Raycast(transform.position, transform.forward, out RaycastHit hit,
+                    checkDistance, magnetLayer))
             {
                 pulledObject = hit.rigidbody;
                 //pull the box towaards the player
@@ -64,7 +70,10 @@ public class MagnetPull : MonoBehaviour
 
     private void OnDestroy()
     {
-        pull.performed -= PullPerformed;
-        pull.canceled -= PullCanceled;
+        if (activated)
+        {
+            pull.performed -= PullPerformed;
+            pull.canceled -= PullCanceled;
+        }
     }
 }
