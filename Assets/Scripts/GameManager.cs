@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     private InputAction pause;
     private bool isPaused;
     [SerializeField] private GameObject pauseScreen;
+    [SerializeField] private GameObject CreditScreen;
+    [SerializeField] private GameObject TitleScreen;
 
     private void Start()
     {
@@ -29,6 +31,18 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("quit");
         Application.Quit();
+    }
+
+    public void Credits()
+    {
+        TitleScreen.SetActive(false);
+        CreditScreen.SetActive(true);
+    }
+
+    public void Title()
+    {
+        CreditScreen.SetActive(false);
+        TitleScreen.SetActive(true);
     }
 
     private void Update()

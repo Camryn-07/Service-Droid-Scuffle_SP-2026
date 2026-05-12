@@ -14,6 +14,7 @@ public class MagnetPull : MonoBehaviour
     private Rigidbody pulledObject;
     [SerializeField] private PlayerMovement PM;
     private bool activated = false;
+    [SerializeField] private AudioSource magnetSound;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,6 +28,7 @@ public class MagnetPull : MonoBehaviour
     private void PullPerformed(InputAction.CallbackContext obj)
     {
         magnetBeam.SetActive(true);
+        magnetSound.Play();
         pulling = true;
         PM.RotationSpeed = 0.1f;
     }
@@ -34,6 +36,7 @@ public class MagnetPull : MonoBehaviour
     private void PullCanceled(InputAction.CallbackContext obj)
     {
         magnetBeam.SetActive(false);
+        magnetSound.Stop();
         pulling = false;
         PM.RotationSpeed = 0.25f;
     }
